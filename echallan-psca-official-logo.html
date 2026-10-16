@@ -1,0 +1,552 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<meta name="description" content="MUSA E-Challan — quick access to Punjab's official e-challan verification portal.">
+<title>MUSA E-CHALLAN | Punjab</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+:root {
+  --bg:#07111f;
+  --panel:#101f34;
+  --cyan:#38e8e0;
+  --blue:#528cff;
+  --green:#49e6a1;
+  --text:#f3f7ff;
+  --muted:#9aabc1;
+  --border:rgba(147,180,220,.17);
+}
+* {box-sizing:border-box;margin:0;padding:0}
+html {scroll-behavior:smooth}
+body {
+  font-family:Inter,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+a {color:inherit;text-decoration:none}
+button,input {font:inherit}
+button { -webkit-tap-highlight-color:transparent; }
+
+.background {
+  position:fixed;inset:0;z-index:-2;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 15% 15%,rgba(35,115,207,.22),transparent 45%),
+    radial-gradient(ellipse at 85% 65%,rgba(20,204,184,.12),transparent 40%),
+    linear-gradient(145deg,#07111f,#091629 60%,#06101d);
+}
+.grid-bg {
+  position:absolute;inset:-50%;
+  background-image:
+    linear-gradient(rgba(93,158,210,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(93,158,210,.06) 1px,transparent 1px);
+  background-size:48px 48px;
+  transform:perspective(700px) rotateX(58deg) scale(1.6);
+  animation:gridMove 24s linear infinite;
+}
+.orb {
+  position:absolute;border-radius:50%;
+  animation:float 10s ease-in-out infinite;
+}
+.orb.one {
+  width:270px;height:270px;left:-100px;top:18%;
+  background:radial-gradient(circle,rgba(51,135,255,.18),transparent 70%);
+}
+.orb.two {
+  width:350px;height:350px;right:-130px;top:50%;
+  background:radial-gradient(circle,rgba(34,231,209,.13),transparent 70%);
+  animation-delay:-4s;
+}
+@keyframes gridMove {
+  from {background-position:0 0}
+  to {background-position:0 192px}
+}
+@keyframes float {
+  0%,100% {transform:translate3d(0,0,0)}
+  50% {transform:translate3d(15px,-25px,0)}
+}
+header {
+  width:min(1180px,92%);
+  margin:auto;height:84px;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.brand {display:flex;align-items:center;gap:12px}
+.brand-icon {
+  width:48px;height:48px;flex:0 0 48px;border-radius:12px;
+  display:grid;place-items:center;overflow:hidden;
+  background:#fff;border:1px solid rgba(255,255,255,.22);
+  box-shadow:0 0 24px rgba(56,232,224,.15);
+}
+.brand-icon img {
+  display:block;width:100%;height:100%;object-fit:contain;padding:3px;
+}
+
+.brand h2 {font-size:17px;letter-spacing:-.6px}
+.brand small {
+  display:block;font-size:10px;color:var(--muted);
+  margin-top:4px;letter-spacing:2px;
+}
+.nav-actions {display:flex;gap:10px;align-items:center}
+.nav-link {
+  padding:11px 15px;border:1px solid var(--border);
+  border-radius:10px;color:#c5d4e7;font-size:12px;
+  transition:.25s;
+}
+.nav-link:hover {border-color:var(--cyan);color:var(--cyan)}
+
+main {width:min(1180px,92%);margin:auto}
+.hero {
+  padding:78px 0 65px;
+  display:grid;grid-template-columns:1.05fr .95fr;
+  align-items:center;gap:55px;
+}
+.eyebrow {
+  display:inline-flex;align-items:center;gap:9px;
+  border:1px solid rgba(56,232,224,.24);
+  background:rgba(56,232,224,.06);
+  color:var(--cyan);padding:9px 13px;border-radius:100px;
+  font-size:10px;font-weight:800;letter-spacing:1.7px;
+}
+.pulse {
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 12px var(--green);
+}
+h1 {
+  font-size:clamp(42px,5.8vw,76px);
+  line-height:1.03;letter-spacing:-4px;
+  margin:25px 0 20px;font-weight:900;
+}
+h1 span {
+  color:transparent;
+  background:linear-gradient(100deg,var(--cyan),#8caeff 75%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.hero-description {
+  color:var(--muted);font-size:14px;line-height:1.9;
+  max-width:490px;
+}
+.features {display:flex;flex-wrap:wrap;gap:18px;margin-top:27px}
+.feature {font-size:11px;color:#c3d2e4;display:flex;gap:8px;align-items:center}
+.feature i {color:var(--green)}
+
+.search-card {
+  position:relative;padding:30px;
+  border:1px solid rgba(116,174,220,.23);
+  border-radius:24px;
+  background:linear-gradient(145deg,rgba(22,43,68,.96),rgba(9,22,39,.97));
+  box-shadow:0 35px 90px rgba(0,0,0,.28),inset 0 1px rgba(255,255,255,.05);
+  transform-style:preserve-3d;
+  transition:transform .18s ease-out;
+}
+.card-top {display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:24px}
+.card-top h3 {font-size:18px}
+.live {
+  font-size:9px;font-weight:800;letter-spacing:1px;color:var(--green);
+  background:rgba(73,230,161,.09);padding:8px 10px;border-radius:8px;
+}
+.card-sub {font-size:12px;color:var(--muted);line-height:1.7;margin-top:9px}
+.plate-preview {
+  margin:23px 0;padding:15px;
+  border-radius:12px;background:#f2f5f8;
+  border:4px solid #a9b5c1;color:#101c2a;text-align:center;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  transform:translateZ(16px);
+}
+.plate-preview small {
+  display:block;font-size:9px;letter-spacing:2px;font-weight:800;
+  color:#52647a;margin-bottom:5px;
+}
+.plate-preview strong {
+  display:block;font-size:clamp(24px,3vw,34px);
+  font-weight:900;letter-spacing:4px;overflow-wrap:anywhere;
+}
+label {display:block;font-size:11px;font-weight:700;margin:19px 0 10px;color:#d8e4f2}
+.input-wrap {position:relative}
+.input-wrap i {
+  position:absolute;left:15px;top:50%;transform:translateY(-50%);
+  color:var(--cyan);font-size:15px;
+}
+input {
+  width:100%;height:54px;padding:0 15px 0 44px;
+  border-radius:12px;background:#091629;color:white;
+  border:1px solid #263d57;outline:none;transition:.25s;
+  text-transform:uppercase;
+}
+input::placeholder {color:#60748c;text-transform:none}
+input:focus {border-color:var(--cyan);box-shadow:0 0 0 3px rgba(56,232,224,.09)}
+.hint {font-size:10px;color:#8396ad;margin-top:9px;line-height:1.7}
+.btn {
+  width:100%;min-height:52px;display:flex;justify-content:center;
+  align-items:center;gap:10px;border:0;border-radius:12px;
+  font-size:12px;font-weight:800;cursor:pointer;transition:.25s;
+}
+.btn-primary {
+  margin-top:20px;color:#061522;
+  background:linear-gradient(100deg,var(--cyan),#72b9ff);
+  box-shadow:0 10px 25px rgba(56,232,224,.12);
+}
+.btn-primary:hover {transform:translateY(-2px);box-shadow:0 15px 35px rgba(56,232,224,.22)}
+.btn-secondary {
+  margin-top:10px;background:rgba(255,255,255,.035);
+  border:1px solid var(--border);color:#d5e2f2;
+}
+.btn-secondary:hover {border-color:var(--cyan);color:var(--cyan)}
+.privacy {text-align:center;margin-top:18px;font-size:10px;color:#8195ac;line-height:1.7}
+.privacy i {color:var(--green);margin-right:5px}
+.notice {
+  display:none;margin-top:13px;padding:13px;border-radius:10px;
+  background:rgba(255,183,77,.08);
+  border:1px solid rgba(255,183,77,.24);
+  color:#ffd59a;font-size:11px;line-height:1.7;
+}
+.notice.show {display:block}
+
+.section {padding:30px 0 75px}
+.section-heading {text-align:center;margin-bottom:32px}
+.section-heading h2 {font-size:28px;letter-spacing:-1px;margin-bottom:12px}
+.section-heading p {color:var(--muted);font-size:12px;line-height:1.8}
+.info-grid {display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.info-card {
+  border:1px solid var(--border);border-radius:17px;padding:24px;
+  background:rgba(15,30,49,.72);
+  transition:transform .3s,border-color .3s;
+}
+.info-card:hover {transform:translateY(-5px);border-color:rgba(56,232,224,.4)}
+.info-icon {
+  width:43px;height:43px;border-radius:12px;display:grid;
+  place-items:center;font-size:17px;color:var(--cyan);
+  background:rgba(56,232,224,.09);margin-bottom:18px;
+}
+.info-card h3 {font-size:14px;margin-bottom:10px}
+.info-card p {font-size:11px;line-height:1.9;color:var(--muted)}
+.steps {display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.step {display:flex;gap:14px}
+.step-number {
+  flex:0 0 35px;height:35px;display:grid;place-items:center;
+  border-radius:10px;background:rgba(82,140,255,.12);
+  color:#8ab5ff;font-size:12px;font-weight:900;
+}
+.step h4 {font-size:12px;margin:4px 0 8px}
+.step p {font-size:11px;line-height:1.8;color:var(--muted)}
+.official-box {
+  margin:0 0 70px;padding:28px;
+  border:1px solid rgba(56,232,224,.2);
+  background:linear-gradient(110deg,rgba(56,232,224,.06),rgba(82,140,255,.06));
+  border-radius:18px;display:flex;align-items:center;
+  justify-content:space-between;gap:22px;
+}
+.official-box h3 {font-size:16px;margin-bottom:8px}
+.official-box p {font-size:11px;line-height:1.8;color:var(--muted)}
+.official-button {
+  display:inline-flex;flex-shrink:0;align-items:center;gap:9px;
+  padding:14px 17px;border-radius:11px;background:var(--green);
+  color:#061b18;font-size:11px;font-weight:900;
+}
+footer {
+  border-top:1px solid var(--border);padding:27px 4%;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:15px;color:#8193a8;font-size:10px;
+}
+footer strong {color:#e6f0fc;letter-spacing:1px}
+footer a {color:var(--cyan)}
+
+@media(max-width:850px) {
+  .hero {grid-template-columns:1fr;gap:35px;padding-top:55px}
+  .hero-copy {text-align:center}
+  .hero-description {margin:auto}
+  .features {justify-content:center}
+  h1 {letter-spacing:-2.5px}
+  .search-card {max-width:550px;width:100%;margin:auto}
+}
+@media(max-width:600px) {
+  header {height:72px}
+  .brand h2 {font-size:14px}
+  .brand-icon {width:40px;height:40px;flex-basis:40px}
+  .nav-link {padding:10px;font-size:10px}
+  .hero {padding:45px 0}
+  h1 {font-size:45px}
+  .search-card {padding:21px;border-radius:19px}
+  .info-grid,.steps {grid-template-columns:1fr}
+  .info-card {padding:21px}
+  .official-box {align-items:flex-start;flex-direction:column}
+  .official-button {width:100%;justify-content:center}
+  footer {flex-direction:column;text-align:center}
+}
+@media(prefers-reduced-motion:reduce) {
+  *,*::before,*::after {animation:none!important;scroll-behavior:auto!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<div class="background" aria-hidden="true">
+  <div class="grid-bg"></div>
+  <div class="orb one"></div>
+  <div class="orb two"></div>
+</div>
+
+<header>
+  <a class="brand" href="#" aria-label="MUSA E-Challan home">
+    <div class="brand-icon">
+      <img src="data:image/png;base64,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"
+           alt="Punjab Safe Cities Authority (PSCA) logo"
+           >
+    </div>
+    <div>
+      <h2>MUSA E-CHALLAN</h2>
+      <small>PUNJAB · VEHICLE SERVICES</small>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <a class="nav-link" href="#how">
+      <i class="fa-solid fa-circle-info"></i> How it works
+    </a>
+    <a class="nav-link" href="https://echallan.psca.gop.pk/" target="_blank" rel="noopener noreferrer">
+      Official Portal <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> PUNJAB E-CHALLAN ACCESS</div>
+      <h1>Check Your<br><span>E-Challan.</span></h1>
+      <p class="hero-description">
+        Start your traffic challan search using your vehicle number plate.
+        Continue to the official Punjab Safe Cities Authority portal to
+        verify real challans and access available documents.
+      </p>
+      <div class="features">
+        <div class="feature"><i class="fa-solid fa-shield-halved"></i> Official verification</div>
+        <div class="feature"><i class="fa-solid fa-file-pdf"></i> PDF access</div>
+        <div class="feature"><i class="fa-solid fa-mobile-screen"></i> Mobile friendly</div>
+      </div>
+    </div>
+
+    <div class="search-card" id="searchCard">
+      <div class="card-top">
+        <h3>Quick Challan Search</h3>
+        <span class="live"><i class="fa-solid fa-circle-check"></i> PSCA PORTAL</span>
+      </div>
+
+      <p class="card-sub">
+        Enter your registration plate below. No CNIC or chassis field is
+        requested by this website.
+      </p>
+
+      <div class="plate-preview">
+        <small>PAKISTAN · VEHICLE REGISTRATION</small>
+        <strong id="platePreview">ABC 1234</strong>
+      </div>
+
+      <form id="searchForm">
+        <label for="plate">Vehicle Number Plate</label>
+        <div class="input-wrap">
+          <i class="fa-solid fa-car"></i>
+          <input
+            id="plate"
+            name="plate"
+            type="text"
+            placeholder="Enter number plate"
+            autocomplete="off"
+            maxlength="20"
+            required
+            aria-describedby="plateHint">
+        </div>
+
+        <p class="hint" id="plateHint">
+          Example: ABC 1234. Use the registration shown on your vehicle documents.
+        </p>
+
+        <div class="notice" id="notice" role="status" aria-live="polite"></div>
+
+        <button class="btn btn-primary" type="submit">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          Search Challan
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+
+        <button class="btn btn-secondary" type="button" id="pdfButton">
+          <i class="fa-solid fa-file-pdf"></i>
+          Find Challan PDF
+        </button>
+      </form>
+
+      <p class="privacy">
+        <i class="fa-solid fa-lock"></i>
+        This page does not store your plate or challan information.
+        Official results are provided by PSCA.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-heading">
+      <h2>Simple. Secure. Verified.</h2>
+      <p>Quick access to official challan information without fabricated results.</p>
+    </div>
+
+    <div class="info-grid">
+      <article class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-database"></i></div>
+        <h3>Official Data</h3>
+        <p>Visit the PSCA government portal to check actual traffic challan records.</p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-file-arrow-down"></i></div>
+        <h3>PDF & Printing</h3>
+        <p>Use the official portal's available print or download options to save a challan PDF.</p>
+      </article>
+
+      <article class="info-card">
+        <div class="info-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h3>Privacy First</h3>
+        <p>This page asks only for the vehicle plate. Any further official verification is handled by PSCA.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" id="how">
+    <div class="section-heading">
+      <h2>How to Check Your Challan</h2>
+      <p>Three simple steps to reach your official records.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <div>
+          <h4>Enter Your Plate</h4>
+          <p>Type the vehicle registration number into the search field.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">02</div>
+        <div>
+          <h4>Open Official Search</h4>
+          <p>Continue to PSCA. The official service determines which verification details are required.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-number">03</div>
+        <div>
+          <h4>View or Save PDF</h4>
+          <p>Review available challans and use the official download or print option when provided.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="official-box">
+    <div>
+      <h3><i class="fa-solid fa-building-shield"></i> Punjab Safe Cities Authority</h3>
+      <p>Use the official government portal for authentic challan records and documents.</p>
+    </div>
+    <a class="official-button" href="https://echallan.psca.gop.pk/" target="_blank" rel="noopener noreferrer">
+      Open Official Website <i class="fa-solid fa-arrow-up-right-from-square"></i>
+    </a>
+  </section>
+</main>
+
+<footer>
+  <div><strong>MUSA E-CHALLAN</strong> · Independent access interface</div>
+  <div>Not affiliated with PSCA or the Government of Punjab.</div>
+  <div><a href="https://echallan.psca.gop.pk/" target="_blank" rel="noopener noreferrer">Official PSCA Portal</a></div>
+  <div>Created by MUSA SOHAIL</div>
+</footer>
+
+<script>
+"use strict";
+
+const OFFICIAL_URL = "https://echallan.psca.gop.pk/";
+
+const plateInput = document.getElementById("plate");
+const platePreview = document.getElementById("platePreview");
+const notice = document.getElementById("notice");
+const searchForm = document.getElementById("searchForm");
+const pdfButton = document.getElementById("pdfButton");
+const searchCard = document.getElementById("searchCard");
+
+function getPlate() {
+  return plateInput.value.trim().replace(/\s+/g, " ").toUpperCase();
+}
+
+function showNotice(message) {
+  notice.textContent = message;
+  notice.classList.add("show");
+}
+
+function validPlate(plate) {
+  return /^[A-Z0-9][A-Z0-9 -]{1,18}[A-Z0-9]$/.test(plate);
+}
+
+function openOfficialPortal(mode) {
+  const plate = getPlate();
+
+  if (!plate || !validPlate(plate)) {
+    showNotice("Please enter a valid vehicle number plate.");
+    plateInput.focus();
+    return;
+  }
+
+  if (mode === "pdf") {
+    showNotice(
+      "Opening the official portal. Verify your vehicle there, then use the available challan PDF download or print option. This page cannot generate or retrieve official PDFs independently."
+    );
+  } else {
+    showNotice(
+      "Opening the official PSCA portal. Your plate is entered here only; the official service controls its search and verification requirements."
+    );
+  }
+
+  // Open the official portal without pretending its website supports
+  // a vehicle query parameter or an undocumented API.
+  window.open(OFFICIAL_URL, "_blank", "noopener,noreferrer");
+}
+
+plateInput.addEventListener("input", () => {
+  platePreview.textContent = getPlate() || "ABC 1234";
+  notice.classList.remove("show");
+});
+
+searchForm.addEventListener("submit", event => {
+  event.preventDefault();
+  openOfficialPortal("search");
+});
+
+pdfButton.addEventListener("click", () => {
+  openOfficialPortal("pdf");
+});
+
+// Desktop 3D card tilt.
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  searchCard.addEventListener("mousemove", event => {
+    const rect = searchCard.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    searchCard.style.transform =
+      `perspective(1100px) rotateX(${(0.5-y)*3}deg) rotateY(${(x-0.5)*3}deg)`;
+  });
+
+  searchCard.addEventListener("mouseleave", () => {
+    searchCard.style.transform =
+      "perspective(1100px) rotateX(0deg) rotateY(0deg)";
+  });
+}
+</script>
+</body>
+</html>
